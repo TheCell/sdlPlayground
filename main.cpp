@@ -1,9 +1,27 @@
-#include<SDL.h>
+#include "game.h"
 
-SDL_Window* g_pWindow = 0;
-SDL_Renderer* g_pRenderer = 0;
+// our Game object
+Game* g_game = 0;
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
+{
+    g_game = new Game();
+
+    g_game->init("playground", 100, 100, 640, 480, 0);
+
+    while(g_game->isRunning())
+    {
+        g_game->handleEvents();
+        g_game->update();
+        g_game->render();
+    }
+
+    g_game->clean();
+
+    return 0;
+}
+
+/*int main(int argc, char *argv[])
 {
     // initialize SDL
     if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
@@ -38,4 +56,4 @@ int main(int argc, char *argv[])
     SDL_Delay(5000);
 
     return 0;
-}
+}*/

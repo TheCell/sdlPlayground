@@ -15,7 +15,8 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    game.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SDL2/dlib2.0.4/lib/x64/ -lSDL2
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SDL2/dlib2.0.4/lib/x64/ -lSDL2
@@ -32,3 +33,6 @@ INCLUDEPATH += $$PWD/../../SDL2/dlib2.0.4/lib/x64
 DEPENDPATH += $$PWD/../../SDL2/dlib2.0.4/lib/x64
 
 INCLUDEPATH += $$PWD/../../SDL2/dlib2.0.4/include
+
+HEADERS += \
+    game.h
