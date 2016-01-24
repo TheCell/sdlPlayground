@@ -19,9 +19,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             {
                 std::cout << "renderer creation success\n";
                 // set to black
-                // This function expects Red, Green, Blue and
-                // Alpha as color values
-                SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+                // This function expects Red, Green, Blue and Alpha as color values
+                SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
             }
             else
             {
@@ -42,7 +41,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     }
 
     std::cout << "init success\n";
-    m_isRunning = true; // everything inited successfully, start the main loop
+    m_textureManager.load("assets/gameassets/player.png", "animate", m_pRenderer);
+    m_isRunning = true; // everything initiated successfully, start the main loop
 
     return true;
 }
@@ -51,6 +51,8 @@ void Game::render()
 {
     // clear the renderer to the draw color
     SDL_RenderClear(m_pRenderer);
+
+    m_textureManager.drawFrame("animate", 0, 0, 128, 256, 1, m_currentFrame, m_pRenderer);
 
     // draw to the screen
     SDL_RenderPresent(m_pRenderer);
@@ -79,4 +81,9 @@ void Game::handleEvents()
                 break;
         }
     }
+}
+
+void Game::update()
+{
+    m_currentFrame = int(((SDL_GetTicks() / 100) % 2));
 }

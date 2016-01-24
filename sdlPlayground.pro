@@ -16,7 +16,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    game.cpp
+    game.cpp \
+    texturemanager.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SDL2/dlib2.0.4/lib/x64/ -lSDL2
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SDL2/dlib2.0.4/lib/x64/ -lSDL2
@@ -35,4 +36,14 @@ DEPENDPATH += $$PWD/../../SDL2/dlib2.0.4/lib/x64
 INCLUDEPATH += $$PWD/../../SDL2/dlib2.0.4/include
 
 HEADERS += \
-    game.h
+    game.h \
+    texturemanager.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SDL2/SDL2_image-2.0.1VC/lib/x64/ -lSDL2_image
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SDL2/SDL2_image-2.0.1VC/lib/x64/ -lSDL2_image
+else:unix: LIBS += -L$$PWD/../../SDL2/SDL2_image-2.0.1VC/lib/x64/ -lSDL2_image
+
+INCLUDEPATH += $$PWD/../../SDL2/SDL2_image-2.0.1VC/lib/x64
+DEPENDPATH += $$PWD/../../SDL2/SDL2_image-2.0.1VC/lib/x64
+
+INCLUDEPATH += $$PWD/../../SDL2/SDL2_image-2.0.1VC/include
